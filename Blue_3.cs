@@ -25,7 +25,7 @@ namespace Lab_8
         }
         public override void Review()
         {
-            if (_output == null) return;
+            if (Input == null) return;
             char[] letters = {
             'а','б','в','г','д','е','ё','ж','з','и','й',
             'к','л','м','н','о','п','р','с','т','у','ф',
