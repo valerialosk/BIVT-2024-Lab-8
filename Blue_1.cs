@@ -33,6 +33,10 @@ namespace Lab_8
                         tempLine += " ";
                         tempLine += word;
                     }
+                    else
+                    {
+                        tempLine += word;
+                    }
                 }
                 else
                 {

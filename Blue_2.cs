@@ -23,7 +23,8 @@ namespace Lab_8
         }
         public override void Review()
         {
-            if (Input == null || Filter == null) return;
+            if (Input == null) return;
+            if (Filter == null) Output = Input;
             string[] words = Input.Split(' ');
             string result = "";
             foreach (string word in words)
