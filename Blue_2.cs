@@ -19,12 +19,11 @@ namespace Lab_8
         public Blue_2(string input, string filter) : base(input)
         {
             Filter = filter;
-            Output = null;
+            Output = input;
         }
         public override void Review()
         {
-            if (Input == null) return;
-            if (Filter == null) Output = Input;
+            if (Input == null || Filter == null || Input.Length == 0 || Filter.Length == 0) return;
             string[] words = Input.Split(' ');
             string result = "";
             foreach (string word in words)

@@ -8,7 +8,7 @@ namespace Lab_8
 {
     public class Blue_3 : Blue
     {
-        private (char, double)[] _output; //кортеж
+        private (char, double)[] _output; //массив кортежей
         public (char, double)[] Output
         {
             get
@@ -21,7 +21,7 @@ namespace Lab_8
         }
         public Blue_3(string input) : base(input) 
         {
-            _output = new (char, double)[0];
+            _output = null;
         }
         public override void Review()
         {
@@ -30,14 +30,23 @@ namespace Lab_8
             'а','б','в','г','д','е','ё','ж','з','и','й',
             'к','л','м','н','о','п','р','с','т','у','ф',
             'х','ц','ч','ш','щ', 'ъ', 'ы', 'ь', 'э','ю','я'};
-            int[] counts = new int[letters.Length];
+            int[] counts = new int[letters.Length]; 
             int total = 0; //количество всех слов
             string[] words = Input.Split(' ');
             for (int i = 0; i < words.Length; i++)
             {
                 string word = words[i].Trim();
                 if (word.Length == 0) continue;
-                char first = char.ToLower(word[0]); //ToLower переводит заглавную букву в строчную, используем метод через сам типа char
+                char first = '\0';
+                if (char.IsLetter(word[0]) == true)
+                {
+                    first = char.ToLower(word[0]);
+                }
+                else
+                {
+                    first = char.ToLower(word[1]);
+                }
+                //ToLower переводит заглавную букву в строчную, используем метод через сам типа char
                 for (int j = 0; j < letters.Length; j++)
                 {
                     if (first == letters[j])
@@ -63,11 +72,11 @@ namespace Lab_8
         }
         public override string ToString()
         {
-            if (_output == null) return null;
+            if (_output == null || _output.Length == 0) return null;
             string s = "";
             for (int i = 0; i < _output.Length; i++)
             {
-                s += $"{_output[i].Item1}-{_output[i].Item2}";
+                s += $"{_output[i].Item1}-{Math.Round(_output[i].Item2, 4)}";
                 if (i < _output.Length - 1) s += "\n";
             }
             return s;
