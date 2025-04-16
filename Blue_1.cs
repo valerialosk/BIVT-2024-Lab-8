@@ -65,7 +65,7 @@ namespace Lab_8
                 result += Output[i];
                 if (i < Output.Length - 1)
                 {
-                    result += "\n";
+                    result += Environment.NewLine;
                 }
             }
             return result;

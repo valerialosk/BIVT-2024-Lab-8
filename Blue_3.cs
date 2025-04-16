@@ -29,16 +29,19 @@ namespace Lab_8
             char[] letters = {
             'а','б','в','г','д','е','ё','ж','з','и','й',
             'к','л','м','н','о','п','р','с','т','у','ф',
-            'х','ц','ч','ш','щ', 'ъ', 'ы', 'ь', 'э','ю','я'};
-            int[] counts = new int[letters.Length]; 
+            'х','ц','ч','ш','щ', 'ъ', 'ы', 'ь', 'э','ю','я',
+            'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j',
+            'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't',
+            'u', 'v', 'w', 'x', 'y', 'z'};
+            int[] counts = new int[letters.Length];
             int total = 0; //количество всех слов
             string[] words = Input.Split(' ');
+            char first = '\0';
             for (int i = 0; i < words.Length; i++)
             {
                 string word = words[i].Trim();
                 if (word.Length == 0) continue;
-                char first = '\0';
-                if (char.IsLetter(word[0]) == true)
+                if (char.IsLetter(word[0]) == true || word.Length == 1)
                 {
                     first = char.ToLower(word[0]);
                 }
@@ -46,12 +49,11 @@ namespace Lab_8
                 {
                     first = char.ToLower(word[1]);
                 }
-                //ToLower переводит заглавную букву в строчную, используем метод через сам типа char
                 for (int j = 0; j < letters.Length; j++)
                 {
                     if (first == letters[j])
                     {
-                        counts[j]++; 
+                        counts[j]++;
                         total++;
                         break;
                     }
@@ -76,8 +78,8 @@ namespace Lab_8
             string s = "";
             for (int i = 0; i < _output.Length; i++)
             {
-                s += $"{_output[i].Item1}-{Math.Round(_output[i].Item2, 4)}";
-                if (i < _output.Length - 1) s += "\n";
+                s += $"{_output[i].Item1}-{(double)Math.Round(_output[i].Item2, 4)}"; // поправила исходя из теста 6 ожидаемый результат идет в формате целая часть и 4 символа после запятой
+                if (i < _output.Length - 1) s += Environment.NewLine;
             }
             return s;
         }

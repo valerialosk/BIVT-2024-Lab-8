@@ -36,8 +36,17 @@ namespace Lab_8
                     }
                     result += word;
                 }
+                else if (word.Contains(Filter) & (!char.IsLetter(word[0]) || !char.IsLetter(word[word.Length - 1])))
+                {
+                    foreach (char simvol in word)
+                    {
+                        if (!char.IsLetter(simvol)) result += simvol;
+                    }
+                }
+                //если рядом со словом стоит знак препинания, то он отлетает (в случае удаления слова), а тут я его добавляю
             }
             Output = result.Trim(); //Trim удаляет лишние пробелы в начале и в конце строки
+            System.Console.WriteLine(Output.Length);
         }
         public override string ToString()
         {
