@@ -46,7 +46,6 @@ namespace Lab_8
                 //если рядом со словом стоит знак препинания, то он отлетает (в случае удаления слова), а тут я его добавляю
             }
             Output = result.Trim(); //Trim удаляет лишние пробелы в начале и в конце строки
-            System.Console.WriteLine(Output.Length);
         }
         public override string ToString()
         {
