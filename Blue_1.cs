@@ -13,8 +13,8 @@ namespace Lab_8
             get; private set;
         }
         public Blue_1(string input) : base(input) 
-        { 
-             Output = new string[0];
+        {
+            Output = null;
         }
         public override void Review()
         {
@@ -26,17 +26,12 @@ namespace Lab_8
             for (int i = 0; i < words.Length; i++)
             {
                 string word = words[i];
-                if ((tempLine.Length + word.Length + (tempLine.Length > 0 ? 1 : 0)) <= 50)
+                if (string.IsNullOrWhiteSpace(word) || string.IsNullOrEmpty(word)) continue;
+                if (tempLine.Length == 0) tempLine = word;
+                else if ((tempLine.Length + word.Length) <= 50)
                 {
-                    if (tempLine.Length > 0)
-                    {
                         tempLine += " ";
                         tempLine += word;
-                    }
-                    else
-                    {
-                        tempLine += word;
-                    }
                 }
                 else
                 {
@@ -45,7 +40,7 @@ namespace Lab_8
                     count++;
                 }
             }
-            if (tempLine != null || tempLine != "")
+            if (!string.IsNullOrEmpty(tempLine))
             {
                 temp[count] = tempLine;
                 count++; //увеличиваю count, чтобы count показывал в самом конце длину массива
@@ -62,12 +57,13 @@ namespace Lab_8
             string result = "";
             for (int i = 0; i < Output.Length; i++)
             {
-                result += Output[i];
+                result += $"{Output[i]}";
                 if (i < Output.Length - 1)
                 {
                     result += Environment.NewLine;
                 }
             }
+            if (string.IsNullOrEmpty(result)) return null;
             return result;
         }
     }
