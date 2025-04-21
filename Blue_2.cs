@@ -19,36 +19,43 @@ namespace Lab_8
         public Blue_2(string input, string filter) : base(input)
         {
             Filter = filter;
-            Output = input;
+            Output = null;
         }
         public override void Review()
         {
-            if (Input == null || Filter == null || Input.Length == 0 || Filter.Length == 0) return;
+            if (string.IsNullOrEmpty(Filter) || string.IsNullOrEmpty(Input))
+            {
+                Output = string.Empty;
+                return;
+            }
             string[] words = Input.Split(' ');
             string result = "";
+            string separator = "";
             foreach (string word in words)
             {
-                if (!word.Contains(Filter)) //Contains - метод, доступный для всех объектов типа string
+                if (string.IsNullOrWhiteSpace(word) || string.IsNullOrEmpty(word)) continue;
+                if (!word.ToLower().Contains(Filter.ToLower())) //Contains - метод, доступный для всех объектов типа string
                 {
-                    if (result.Length > 0)
-                    {
-                        result += " ";
-                    }
+                    result += separator;
                     result += word;
+                    separator = " ";
                 }
-                else if (word.Contains(Filter) & (!char.IsLetter(word[0]) || !char.IsLetter(word[word.Length - 1])))
+                else if (word.Length > 0 && !char.IsLetter(word[0]))
                 {
-                    foreach (char simvol in word)
-                    {
-                        if (!char.IsLetter(simvol)) result += simvol;
-                    }
+                    result += " " + word[0] + word[0];
+                    separator = " ";
                 }
-                //если рядом со словом стоит знак препинания, то он отлетает (в случае удаления слова), а тут я его добавляю
+                if (word.ToLower().Contains(Filter.ToLower()) && word.Length > 0 && !(char.IsLetter(word[word.Length - 1])))
+                {
+                    result += word[word.Length - 1];
+                    separator = " ";
+                }
             }
-            Output = result.Trim(); //Trim удаляет лишние пробелы в начале и в конце строки
+            Output = result;
         }
         public override string ToString()
         {
+            if (string.IsNullOrEmpty(Output) || Output.Length == 0) return string.Empty;
             return Output;
         }
     }
