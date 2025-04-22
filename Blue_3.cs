@@ -83,7 +83,7 @@ namespace Lab_8
             var s = new StringBuilder();
             for (int i = 0; i < _output.Length; i++)
             {
-                s.Append($"{_output[i].Item1} - {(double)Math.Round(_output[i].Item2, 4)}"); // поправила исходя из теста 6 ожидаемый результат идет в формате целая часть и 4 символа после запятой
+                s.Append($"{_output[i].Item1} - {(_output[i].Item2):F4}"); // поправила исходя из теста 6 ожидаемый результат идет в формате целая часть и 4 символа после запятой
                 if (i < _output.Length - 1) s.AppendLine();
             }
             return s.ToString();

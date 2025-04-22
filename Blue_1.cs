@@ -28,7 +28,7 @@ namespace Lab_8
                 string word = words[i];
                 if (string.IsNullOrWhiteSpace(word) || string.IsNullOrEmpty(word)) continue;
                 if (tempLine.Length == 0) tempLine = word;
-                else if ((tempLine.Length + word.Length) <= 50)
+                else if ((tempLine.Length + word.Length + 1) <= 50)
                 {
                         tempLine += " ";
                         tempLine += word;
