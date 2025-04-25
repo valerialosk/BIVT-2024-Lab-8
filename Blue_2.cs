@@ -16,7 +16,6 @@ namespace Lab_8
             _output = null;
         }
         public string Output => _output;
-        public string Filter => _filter;
         public override void Review()
         {
             if (string.IsNullOrEmpty(_filter) || string.IsNullOrEmpty(Input)) return;
